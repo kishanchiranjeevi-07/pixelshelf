@@ -1,17 +1,4 @@
 {
-  "name": "pixelshelf",
-  "version": "1.0.0",
-  "type": "module",
-  "license": "MIT",
-  "scripts": {
-    "dev": "NODE_ENV=development tsx watch server/_core/index.ts",
-    "build": "vite build && esbuild server/_core/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist",
-    "start": "NODE_ENV=production node dist/index.js",
-    "check": "tsc --noEmit",
-    "format": "prettier --write .",
-    "test": "vitest run",
-    "db:push": "drizzle-kit generate && drizzle-kit migrate"
-  },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.693.0",
     "@aws-sdk/s3-request-presigner": "^3.693.0",
@@ -103,13 +90,27 @@
     "vite-plugin-manus-runtime": "0.0.59",
     "vitest": "^2.1.4"
   },
+  "license": "MIT",
+  "name": "pixelshelf",
   "packageManager": "pnpm@10.4.1+sha512.c753b6c3ad7afa13af388fa6d808035a008e30ea9993f58c6663e2bc5ff21679aa834db094987129aa4d488b86df57f7b634981b2f827cdcacc698cc0cfb88af",
   "pnpm": {
+    "overrides": {
+      "tailwindcss\u003enanoid": "3.3.7"
+    },
     "patchedDependencies": {
       "wouter@3.7.1": "patches/wouter@3.7.1.patch"
-    },
-    "overrides": {
-      "tailwindcss>nanoid": "3.3.7"
     }
-  }
+  },
+  "scripts": {
+    "build": "vite build \u0026\u0026 esbuild server/_core/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist",
+    "check": "tsc --noEmit",
+    "db:push": "drizzle-kit generate \u0026\u0026 drizzle-kit migrate",
+    "dev": "NODE_ENV=development tsx watch server/_core/index.ts",
+    "format": "prettier --write .",
+    "shopify:probe": "tsx scripts/shopify-probe.runner.ts",
+    "start": "NODE_ENV=production node dist/index.js",
+    "test": "vitest run"
+  },
+  "type": "module",
+  "version": "1.0.0"
 }
